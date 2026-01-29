@@ -1,5 +1,5 @@
 
-###coding challage 01####
+          ###coding challenge 01####
 
 #1. Explain the following things about R and Rstudio:
 
@@ -17,16 +17,17 @@
 
 # What is a function? Function can be used to identify a variable in R
 
-# How do you find the installed and loaded packages? The installed package list are under the "package tab" (bottom right)
+# How do you find the installed and loaded packages? The installed package list are under the "package tab" (bottom right) and the loaded packages are with a tick
 # to identify the things, 
 
-# What is a working directory, and how do you find it? working directory mean where do you reposit/save the file you are are currently working
+# What is a working directory, and how do you find it? working directory mean where do you reposited/saved the file you are are currently working
 #it can be found by running 'getwd()' command
 
 
 #2.Explain the steps to start a new R project connected to a GitHub repository.
 
-#Click on the 'File' tab and select 'new project' 
+#Open GitHub and make a new repository and copy the code for that repository. 
+#open R studio and click on the 'File' tab and select 'new project' and select option to 
 
 #What is a relative file path and how is it different than an absolute file path?
 # Relative path is the location of the sub directory relative to a working directory
