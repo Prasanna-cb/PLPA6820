@@ -74,11 +74,9 @@ zdf [zdf$zsquared > 10 & zdf$zsquared < 100, ]
 zdf <- subset(zdf, zsquared > 10 & zsquared < 100)
 
 #Subset the zdf dataframe to only include the values on row 26
-
 row_26 <- zdf[26, ]
 
 #Subset the zdf dataframe to only include the values in the column zsquared in the 180th row.
-
 zsquared <- zdf$zsquared[180]
 
 
