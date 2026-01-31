@@ -1,7 +1,7 @@
 
           ###coding challenge 01####
 
-#1. Explain the following things about R and Rstudio:
+#   1. Explain the following things about R and Rstudio:
 
 # Where do you type code? Source Editor pane
 
@@ -9,7 +9,7 @@
 
 #`Where do plots show up? plot pane
 
-# What is a global environment? It show the data files or vectors like data that we upload to the R
+# What is a global environment? It shows the objects that are currently loaded into R such as data file, vectors.
 
 # How do you get help for a function through R studio? Click on the help pane (bottom right) and type the keywords in search bar what you need to get a help
 
@@ -19,31 +19,33 @@
 
 # How do you find the installed and loaded packages? The installed package list are under the "package tab" (bottom right) and the loaded packages are with a tick
 
-
-# What is a working directory, and how do you find it? working directory mean where do you reposited/saved the file you are are currently working
+# What is a working directory, and how do you find it? working directory mean the folder where I saved the input and output files/plots what I currently work.
 #it can be found by running 'getwd()' command
           
 # What is a relative file path and how is it different than an absolute file path?
 # Relative path is the location of the sub directory relative to a working directory
 # Absolute path is is the location of a sub directory from the root file of the computer
 
-#2.Explain the steps to start a new R project connected to a GitHub repository.
+#   2.Explain the steps to start a new R project connected to a GitHub repository.
           
 #Open GitHub and make a new repository and copy the code(URL) for that repository. 
 #open R studio and click on the 'File' tab and select 'new project' and select 'version control' and 'Git'
 # paste the copied URL fro the GitHub repository
 # choose the path to save the repository in the computer (local)
-# click create project 
+# click on create project. Now new project connect to GitHub.
           
           
 # 3.Please explain the different data classes and how they are similar and different from each other.
 
 # Vector: A data carrier in R that can save the numeric or character variables without row or column information.
-# Data frame: A data file use in the R. That can be included a several rows and columns data as a single file. 
-            # All data types can be stored such as numerical,charter or logical.          
+        
 # Matrix: Matrix is a vector basically but it can be carried raw and column data.
          # But only one type of data among numerical,charter and logical can be stored.   
-          
+
+# Data frame: A data file use in the R. That can be included a several rows and columns data as a single file. 
+            # All data types can be stored such as numerical,charter or logical.            
+                    
+
 # 4.
 
 # Create a vector named 'z' with the values 1 to 200
