@@ -86,7 +86,7 @@ TipsR <- read.csv ("D:/AU ED/2026 Spring/PLPA6820/Assignments/Coding_challanges/
 
 # see the data seet on the environment pane and confirm weather missing data has been lablled as "NA"
 
-#6 nnotate your code, commit the changes and push it to your GitHub repository you created last class
+#6 Annotate your code, commit the changes and push it to your GitHub repository you created last class
 
 # Done
 
