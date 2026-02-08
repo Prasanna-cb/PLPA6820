@@ -24,6 +24,25 @@ MycotoxinData=read.csv ("D:/AU ED/2026 Spring/PLPA6820/Assignments/Coding_challa
 head(MycotoxinData)
 ggplot(MycotoxinData, aes(x=Treatment, y=DON, fill =Cultivar))+
 geom_boxplot()+
-xlab("") +                                            
-  ylab("DON (ppm)") 
+  geom_point(position = position_jitterdodge(), alpha = 0.3)+ # Alpha gives the transparency for the data points
+  scale_fill_manual(values= c("orange", "blue"))+
+  scale_color_manual()+
+  xlab("") +                                            
+  ylab("DON (ppm)") +
+facet_wrap(~Cultivar, scale= "free")
 
+## Transform to a bar chart ##
+
+ggplot(MycotoxinData, aes(x = Treatment, y = DON, fill = Cultivar)) +
+  stat_summary(fun = mean, geom = "bar", position = "dodge") +
+  stat_summary(fun.data = mean_se, geom = "errorbar", position = "dodge")+
+  geom_point(position = position_jitterdodge(), alpha = 0.3)+ # show the data points with colos
+  scale_fill_manual(values= c("orange", "blue"))+
+  scale_color_manual()+
+  xlab("Treatment") +                                            
+  ylab("DON (ppm)")+             
+facet_wrap(~Cultivar, scale= "free")
+
+      ### END ###
+
+  
