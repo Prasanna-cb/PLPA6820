@@ -17,7 +17,7 @@
   #e.	Where do you add x and y variables and map different shapes, colors, and other attributes to the data? 
         # Inside the aesthetic (aes) function. 
 
-### 2 ####
+### 2 to 7 ####
 
 library("tidyverse")
 MycotoxinData=read.csv ("D:/AU ED/2026 Spring/PLPA6820/Assignments/Coding_challanges/MycotoxinData.csv", na.strings = "na")
