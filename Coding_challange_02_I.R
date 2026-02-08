@@ -36,7 +36,7 @@ facet_wrap(~Cultivar, scale= "free")
 ggplot(MycotoxinData, aes(x = Treatment, y = DON, fill = Cultivar)) +
   stat_summary(fun = mean, geom = "bar", position = "dodge") +
   stat_summary(fun.data = mean_se, geom = "errorbar", position = "dodge")+
-  geom_point(position = position_jitterdodge(), alpha = 0.3)+ # show the data points with colos
+  geom_point(position = position_jitterdodge(), alpha = 0.3)+ 
   scale_fill_manual(values= c("orange", "blue"))+
   scale_color_manual()+
   xlab("Treatment") +                                            
