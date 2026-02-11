@@ -23,8 +23,8 @@
 ### 2 to 7 ###
 
 library("tidyverse")
-MycotoxinData=read.csv ("D:/AU ED/2026 Spring/PLPA6820/Assignments/Coding_challanges/MycotoxinData.csv", na.strings = "na")
-head(MycotoxinData)
+MycotoxinData=read.csv ("C:/Users/prasa/OneDrive/Desktop/PLPA6820/coding challnages data/MycotoxinData.csv", na.strings = "na") #file path to GitHub repository
+head(MycotoxinData) 
 ggplot(MycotoxinData, aes(x=Treatment, y=DON, fill =Cultivar))+
 geom_boxplot()+
   geom_point(position = position_jitterdodge(), alpha = 0.3)+ # Alpha gives the transparency for the data points
@@ -32,9 +32,11 @@ geom_boxplot()+
   scale_color_manual()+
   xlab("") +                                            
   ylab("DON (ppm)") +
-facet_wrap(~Cultivar, scale= "free")
+facet_wrap(~Cultivar, scale= "free")+
+  theme_classic()
 
-## Transform to a bar chart ##
+
+      ## Transform to a bar chart ##
 
 ggplot(MycotoxinData, aes(x = Treatment, y = DON, fill = Cultivar)) +
   stat_summary(fun = mean, geom = "bar", position = "dodge") +
@@ -44,7 +46,8 @@ ggplot(MycotoxinData, aes(x = Treatment, y = DON, fill = Cultivar)) +
   scale_color_manual()+
   xlab("Treatment") +                                            
   ylab("DON (ppm)")+             
-facet_wrap(~Cultivar, scale= "free")
+facet_wrap(~Cultivar, scale= "free")+
+  theme_classic()
 
       ### END ###
 
