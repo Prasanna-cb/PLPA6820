@@ -23,7 +23,7 @@
 ### 2 to 7 ###
 
 library("tidyverse")
-MycotoxinData=read.csv ("C:/Users/prasa/OneDrive/Desktop/PLPA6820/coding challnages data/MycotoxinData.csv", na.strings = "na") #file path to GitHub repository
+MycotoxinData=read.csv ("coding challnages data/MycotoxinData.csv", na.strings = "na") #file path to GitHub repository
 head(MycotoxinData) 
 ggplot(MycotoxinData, aes(x=Treatment, y=DON, fill =Cultivar))+
 geom_boxplot()+
