@@ -2,41 +2,61 @@
 title: "Coding Practice 4"
 date: "2026-02-18"
 output:
-  md_document:
-    variant: gfm
   html_document:
     toc: true
     toc_float: true
+  md_document:
+    variant: gfm
   pdf_document: 
   word_document: 
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r code exaples}
+#This is sR codes
+summary(mtcars)
 ```
 
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+library(ggplot2)
+data("mtcars")
+ggplot(mtcars, aes(x=wt, y=mpg))+
+  geom_point()
 ```
 
-## R Markdown
+R markdown formatting options
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# First level header
+*example how to ITALICS* 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+## Second level header
+**example how to BOLD**
 
-```{r cars}
-summary(cars)
+### Third evel header
+example text
+
+#### define levels and numbers ####
+- one item
+- another item
+  - one sub item
+
+1. one item
+2. another item
+3. one sub item
+
+#### Links
+
+[link to my GitHub](https://github.com/Prasanna-cb/PLPA6820/blob/main)
+
+#### Images
+![Micky mouse ggplot](Mickey_mouse.jpg)
+#### Formatted tables
+```{r}
+library(knitr)
+kable (mtcars, digits =3, format = "markdown")
+
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
