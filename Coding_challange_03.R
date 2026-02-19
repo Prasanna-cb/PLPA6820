@@ -1,6 +1,6 @@
   ### coding challenge 3 ###
 
-###  GitHub lin: https://github.com/Prasanna-cb/PLPA6820/blob/main/Coding_challange_03.R
+###  GitHub link: https://github.com/Prasanna-cb/PLPA6820/blob/main/Coding_challange_03.R
 
 library("tidyverse")
 library(ggpubr)
