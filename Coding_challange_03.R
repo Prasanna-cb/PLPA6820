@@ -1,14 +1,14 @@
-  ### coding challange 3 ###
+  ### coding challenge 3 ###
 
 library("tidyverse")
 library(ggpubr)
 library(ggrepel)
-MycotoxinData=read.csv ("C:/Users/prasa/OneDrive/Desktop/PLPA6820/coding challnages data/MycotoxinData.csv", na.strings = "na") #file path to GitHub repository
+MycotoxinData=read.csv ("MycotoxinData.csv", na.strings = "na") #file path to GitHub repository
 head(MycotoxinData) 
 
       ### 1, 2 & 3 ###
 
-  ggplotMycotoxinData$Cultivar <- as.factor(MycotoxinData$Cultivar)
+    MycotoxinData$Cultivar <- as.factor(MycotoxinData$Cultivar)
     MycotoxinData$Treatment <- factor(MycotoxinData$Treatment,levels = c("NTC", "Fg", "Fg + 37", "Fg + 40", "Fg + 70"))
     Fig1 <- ggplot(MycotoxinData, aes(x = Treatment, y = DON, fill = Cultivar)) +
         geom_boxplot(position = position_dodge()) +
@@ -91,4 +91,6 @@ figure_combined_final <- ggarrange(
   legend = "top")
 print(figure_combined_final)
 
+
+        ### END ###
 
