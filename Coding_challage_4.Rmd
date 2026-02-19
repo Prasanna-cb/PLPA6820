@@ -1,0 +1,118 @@
+---
+title: "Coding challange 4"
+author: "Prasanna"
+date: "2026-02-19"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+- Noel, Z.A., Roze, L.V., Breunig, M., Trail, F. 2022. Endophytic fungi as
+promising biocontrol agent to protect wheat from Fusarium graminearum
+head blight. Plant Disease. [DOI](https://doi.org/10.1094/PDIS-06-21-1253-RE)
+
+
+### 1. 
+- a. 
+- b.
+
+### 2
+```{r warning=FALSE, echo=FALSE}
+
+library(tidyverse)
+library(ggpubr)
+library(ggrepel)
+```
+
+```{r warning=FALSE, echo=FALSE}
+MycotoxinData=read.csv ("MycotoxinData.csv", na.strings = "na") #file path to GitHub repository
+```
+- I.Using ggplot, create a boxplot of DON by Treatment 
+- II. Change the factor order level so that the treatment “NTC” is first, followed by “Fg”, “Fg + 37”, “Fg + 40”, and “Fg + 70.
+
+```{r echo=FALSE, warning=FALSE}
+MycotoxinData$Cultivar <- as.factor(MycotoxinData$Cultivar)
+    MycotoxinData$Treatment <- factor(MycotoxinData$Treatment,levels = c("NTC", "Fg", "Fg + 37", "Fg + 40", "Fg + 70"))
+    Fig1 <- ggplot(MycotoxinData, aes(x = Treatment, y = DON, fill = Cultivar)) +
+        geom_boxplot(position = position_dodge()) +
+        geom_point(position = position_jitterdodge(), alpha = 0.6) +
+        scale_fill_manual(values = c("orange", "blue")) +
+        xlab("") +
+        ylab("DON (ppm)") +
+        facet_wrap(~ Cultivar) +
+        theme_classic()
+    print(Fig1)
+```
+
+- III. Change the y-variable to plot X15ADON and MassperSeed_mg. 
+
+```{r echo=FALSE, warning=FALSE}
+ MycotoxinData$Cultivar <- as.factor(MycotoxinData$Cultivar)
+      MycotoxinData$Treatment <- factor(MycotoxinData$Treatment,levels = c("NTC", "Fg", "Fg + 37", "Fg + 40", "Fg + 70"))
+      Fig2 <-   ggplot(MycotoxinData, aes(x = Treatment, y = X15ADON, fill = Cultivar)) +
+            geom_boxplot(position = position_dodge()) +
+            geom_point(position = position_jitterdodge(), alpha = 0.6) +
+            scale_fill_manual(values = c("orange", "blue")) +
+            xlab("") +
+            ylab("X15ADON") +
+            facet_wrap(~ Cultivar) +
+            theme_classic()
+      print(Fig2)
+```
+
+```{r echo=FALSE, warning=FALSE}
+MycotoxinData$Cultivar <- as.factor(MycotoxinData$Cultivar)
+    MycotoxinData$Treatment <- factor(MycotoxinData$Treatment,levels = c("NTC", "Fg", "Fg + 37", "Fg + 40", "Fg + 70"))
+    Fig3 <-   ggplot(MycotoxinData, aes(x = Treatment, y = MassperSeed_mg, fill = Cultivar)) +
+          geom_boxplot(position = position_dodge()) +
+          geom_point(position = position_jitterdodge(), alpha = 0.6) +
+          scale_fill_manual(values = c("orange", "blue")) +
+          xlab("") +
+          ylab("MassperSeed_mg") +
+          facet_wrap(~ Cultivar) +
+          theme_classic()
+    print(Fig3)
+```
+- IV. Use ggarrange function to combine all three figures into one with three columns and
+one row. Set the labels for the subplots as A, B and C. Set the option common.legend = T
+within ggarage function
+
+```{r echo=FALSE, warning=FALSE}
+figure_combined <- ggarrange(
+  Fig1,
+  Fig2,
+  Fig3,
+  labels = "auto",  
+  nrow = 1,
+  ncol = 3,
+  common.legend = TRUE,  
+  legend = "top")
+print(figure_combined)
+```
+- V.Use geom_pwc() to add t.test pairwise comparisons to the three plots made above.
+```{r echo=FALSE, warning=FALSE}
+Fig1a <- Fig1 + 
+geom_pwc(aes(group = Treatment), method = "t_test", label = "p.adj.format")        
+print(Fig1a)
+
+Fig2a <- Fig2 + 
+  geom_pwc(aes(group = Treatment), method = "t_test", label = "p.adj.format")     
+print(Fig2a)
+
+Fig3a <- Fig3 + 
+  geom_pwc(aes(group = Treatment), method = "t_test", label = "p.adj.format")     
+print(Fig3a)
+
+### Integration of pairwise comparison results into a single plot  ###
+figure_combined_final <- ggarrange(
+  Fig1a,
+  Fig2a,
+  Fig3a,
+  labels = "auto",  
+  nrow = 1,
+  ncol = 3,
+  common.legend = TRUE,  
+  legend = "top")
+print(figure_combined_final)
+```
+
