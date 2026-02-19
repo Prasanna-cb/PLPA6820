@@ -1,12 +1,14 @@
   ### coding challenge 3 ###
 
+###  GitHub lin: https://github.com/Prasanna-cb/PLPA6820/blob/main/Coding_challange_03.R
+
 library("tidyverse")
 library(ggpubr)
 library(ggrepel)
 MycotoxinData=read.csv ("MycotoxinData.csv", na.strings = "na") #file path to GitHub repository
 head(MycotoxinData) 
 
-      ### 1, 2 & 3 ###
+      ### Question 1, 2 & 3 ###
 
     MycotoxinData$Cultivar <- as.factor(MycotoxinData$Cultivar)
     MycotoxinData$Treatment <- factor(MycotoxinData$Treatment,levels = c("NTC", "Fg", "Fg + 37", "Fg + 40", "Fg + 70"))
@@ -47,7 +49,7 @@ head(MycotoxinData)
     print(Fig3)
     
     ##################################
-           ### 04  ###
+           ### Question 04  ###
 
     ### Integration of statistics analysis results into plots  ###
   figure_combined <- ggarrange(
@@ -65,7 +67,7 @@ print(figure_combined)
 # Q1 What did the common.legend option do: It assign a common legend to the all plots instead of having separate legend for each plots
                                           #Avoid repetition of the same legend
 
-       ### 05  ###        
+       ### Question 05 ###        
 
 Fig1a <- Fig1 + 
 geom_pwc(aes(group = Treatment), method = "t_test", label = "p.adj.format")        
