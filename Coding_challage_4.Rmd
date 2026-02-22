@@ -3,6 +3,8 @@ title: "Coding challange 4"
 author: "Prasanna"
 date: "2026-02-19"
 output:
+  pdf_document:
+    toc: true
   html_document:
     variant: gfm
     toc: true
