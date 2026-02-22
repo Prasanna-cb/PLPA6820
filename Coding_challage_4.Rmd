@@ -20,19 +20,19 @@ promising biocontrol agent to protect wheat from Fusarium graminearum
 head blight. Plant Disease. https://doi.org/10.1094/PDIS-06-21-1253-RE
 
 ### Loading necessary libries
-```{r warning=FALSE, echo=FALSE}
+```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 library(ggpubr)
 library(ggrepel)
 ```
 ### Uploading the data to R
 
-```{r warning=FALSE, echo=FALSE}
+```{r warning=FALSE}
 MycotoxinData=read.csv ("MycotoxinData.csv", na.strings = "na") #file path to GitHub repository
 ```
 ### Createa a boxplot of DON by treatment and change the factor order level in X axis
 
-```{r echo=FALSE, warning=FALSE}
+```{r warning=FALSE}
 MycotoxinData$Cultivar <- as.factor(MycotoxinData$Cultivar)
     MycotoxinData$Treatment <- factor(MycotoxinData$Treatment,levels = c("NTC", "Fg", "Fg + 37", "Fg + 40", "Fg + 70"))
     Fig1 <- ggplot(MycotoxinData, aes(x = Treatment, y = DON, fill = Cultivar)) +
@@ -48,7 +48,7 @@ MycotoxinData$Cultivar <- as.factor(MycotoxinData$Cultivar)
 
 ### Change the y-variable to plot X15ADON 
 
-```{r echo=FALSE, warning=FALSE}
+```{r warning=FALSE}
  MycotoxinData$Cultivar <- as.factor(MycotoxinData$Cultivar)
       MycotoxinData$Treatment <- factor(MycotoxinData$Treatment,levels = c("NTC", "Fg", "Fg + 37", "Fg + 40", "Fg + 70"))
       Fig2 <-   ggplot(MycotoxinData, aes(x = Treatment, y = X15ADON, fill = Cultivar)) +
@@ -63,7 +63,7 @@ MycotoxinData$Cultivar <- as.factor(MycotoxinData$Cultivar)
 ```
 
 ### Change the y-variable to plot MassperSeed_mg
-```{r echo=FALSE, warning=FALSE}
+```{r  warning=FALSE}
 MycotoxinData$Cultivar <- as.factor(MycotoxinData$Cultivar)
     MycotoxinData$Treatment <- factor(MycotoxinData$Treatment,levels = c("NTC", "Fg", "Fg + 37", "Fg + 40", "Fg + 70"))
     Fig3 <-   ggplot(MycotoxinData, aes(x = Treatment, y = MassperSeed_mg, fill = Cultivar)) +
@@ -79,7 +79,7 @@ MycotoxinData$Cultivar <- as.factor(MycotoxinData$Cultivar)
 
 ### Use ggarrange function to combine all three figures 
 
-```{r echo=FALSE, warning=FALSE}
+```{r  warning=FALSE}
 figure_combined <- ggarrange(
   Fig1,
   Fig2,
@@ -93,7 +93,7 @@ print(figure_combined)
 ```
 
 ### Use geom_pwc() to add t.test and pairwise comparisons to the above three plots 
-```{r echo=FALSE, warning=FALSE}
+```{r warning=FALSE}
 Fig1a <- Fig1 + 
 geom_pwc(aes(group = Treatment), method = "t_test", label = "p.adj.format")        
 print(Fig1a)
@@ -108,7 +108,7 @@ print(Fig3a)
 ```
 
 ### Integration of pairwise comparison results into a single plot  ###
-```{r echo=FALSE, warning=FALSE}
+```{r warning=FALSE}
 figure_combined_final <- ggarrange(
   Fig1a,
   Fig2a,
