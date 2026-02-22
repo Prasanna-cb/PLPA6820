@@ -4,31 +4,33 @@ author: "Prasanna"
 date: "2026-02-19"
 output:
   html_document:
+    variant: gfm
     toc: true
     toc_float: true
 ---
+### Question 1
+### Explain the following
+- a. The YMAL header is the top section an R Markdown file that tells R how to format and produce the output document. 
+- b. Literate programming is the approach that use the codes, explanations, and results in a single document so that easily understand to a reader about the the logic, purpose, and outcome of the analysis. 
+
+### Question 2
+### Reference
 - Noel, Z.A., Roze, L.V., Breunig, M., Trail, F. 2022. Endophytic fungi as
 promising biocontrol agent to protect wheat from Fusarium graminearum
-head blight. Plant Disease. [DOI](https://doi.org/10.1094/PDIS-06-21-1253-RE)
+head blight. Plant Disease. https://doi.org/10.1094/PDIS-06-21-1253-RE
 
-
-### 1. 
-- a. 
-- b.
-
-### 2
+### Loading necessary libries
 ```{r warning=FALSE, echo=FALSE}
-
 library(tidyverse)
 library(ggpubr)
 library(ggrepel)
 ```
+### Uploading the data to R
 
 ```{r warning=FALSE, echo=FALSE}
 MycotoxinData=read.csv ("MycotoxinData.csv", na.strings = "na") #file path to GitHub repository
 ```
-- I.Using ggplot, create a boxplot of DON by Treatment 
-- II. Change the factor order level so that the treatment “NTC” is first, followed by “Fg”, “Fg + 37”, “Fg + 40”, and “Fg + 70.
+### Createa a boxplot of DON by treatment and change the factor order level in X axis
 
 ```{r echo=FALSE, warning=FALSE}
 MycotoxinData$Cultivar <- as.factor(MycotoxinData$Cultivar)
@@ -44,7 +46,7 @@ MycotoxinData$Cultivar <- as.factor(MycotoxinData$Cultivar)
     print(Fig1)
 ```
 
-- III. Change the y-variable to plot X15ADON and MassperSeed_mg. 
+### Change the y-variable to plot X15ADON 
 
 ```{r echo=FALSE, warning=FALSE}
  MycotoxinData$Cultivar <- as.factor(MycotoxinData$Cultivar)
@@ -60,6 +62,7 @@ MycotoxinData$Cultivar <- as.factor(MycotoxinData$Cultivar)
       print(Fig2)
 ```
 
+### Change the y-variable to plot MassperSeed_mg
 ```{r echo=FALSE, warning=FALSE}
 MycotoxinData$Cultivar <- as.factor(MycotoxinData$Cultivar)
     MycotoxinData$Treatment <- factor(MycotoxinData$Treatment,levels = c("NTC", "Fg", "Fg + 37", "Fg + 40", "Fg + 70"))
@@ -73,9 +76,8 @@ MycotoxinData$Cultivar <- as.factor(MycotoxinData$Cultivar)
           theme_classic()
     print(Fig3)
 ```
-- IV. Use ggarrange function to combine all three figures into one with three columns and
-one row. Set the labels for the subplots as A, B and C. Set the option common.legend = T
-within ggarage function
+
+### Use ggarrange function to combine all three figures 
 
 ```{r echo=FALSE, warning=FALSE}
 figure_combined <- ggarrange(
@@ -89,7 +91,8 @@ figure_combined <- ggarrange(
   legend = "top")
 print(figure_combined)
 ```
-- V.Use geom_pwc() to add t.test pairwise comparisons to the three plots made above.
+
+### Use geom_pwc() to add t.test and pairwise comparisons to the above three plots 
 ```{r echo=FALSE, warning=FALSE}
 Fig1a <- Fig1 + 
 geom_pwc(aes(group = Treatment), method = "t_test", label = "p.adj.format")        
@@ -102,8 +105,10 @@ print(Fig2a)
 Fig3a <- Fig3 + 
   geom_pwc(aes(group = Treatment), method = "t_test", label = "p.adj.format")     
 print(Fig3a)
+```
 
 ### Integration of pairwise comparison results into a single plot  ###
+```{r echo=FALSE, warning=FALSE}
 figure_combined_final <- ggarrange(
   Fig1a,
   Fig2a,
