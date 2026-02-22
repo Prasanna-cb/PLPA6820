@@ -1,8 +1,8 @@
 # PLPA6820
-1. Coding challenge 1
-1. Coding challenge 2
-1. Coding challenge 3
-1. Coding challenge 3
+1. Coding challenge 1: done
+1. Coding challenge 2: done
+1. Coding challenge 3: done
+1. Coding challenge 4: link is bellow
 
 The link for the coding challenge 4 directory is here https://github.com/Prasanna-cb/PLPA6820/blob/main/Coding%20Challange%204/Coding_challage_4.Rmd
 
