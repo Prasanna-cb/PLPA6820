@@ -10,14 +10,15 @@ File tree
 ```
 PLPA6820/
 │
-├── README.md
-├── Coding Homework
-├──Coding challange 1
+├── Archives
 ├──Coding challange 2
 ├──Coding challange 3
 ├──Coding challenge 4/
 │   ├── coding_practice_4.md
 │   ├── coding_practice_4.docx
 │   └── coding_practice_4.pdf
-├── Archives
+├──Coding Homework
+├──Coding challange 1
+├──README.md
+├──PLPA6820.Rproj
 ```
