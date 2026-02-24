@@ -3,6 +3,8 @@ title: "Coding challange 4"
 author: "Prasanna"
 date: "2026-02-19"
 output:
+  word_document:
+    toc: true
   html_document:
     variant: gfm
     toc: true
@@ -10,6 +12,9 @@ output:
   pdf_document:
     toc: true
 ---
+### Link to my  GitHub
+https://github.com/Prasanna-cb/PLPA6820/tree/main/Coding%20Challange%204
+
 ### Question 1
 ### Explain the following
 - a. The YMAL header is the top section an R Markdown file that tells R how to format and produce the output document. 
