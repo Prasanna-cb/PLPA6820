@@ -3,11 +3,12 @@ title: "Coding_challage_5"
 author: "Prasanna"
 date: "2026-03-05"
 output:
-  :
+  html_document:
     toc: true
-  md_document:
-    variant: gfm
 ---
+
+[GitHub link](https://github.com/Prasanna-cb/PLPA6820/tree/main/Coding_chalange_5)
+
 ### loading necessary package
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
