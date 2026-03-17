@@ -1,0 +1,82 @@
+---
+title: "Coding_challage_5"
+author: "Prasanna"
+date: "2026-03-05"
+output:
+  html_document:
+    toc: true
+  md_document:
+    variant: gfm
+---
+### loading necessary package
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+### 1. import two data files
+
+```{r}
+Metadata=read.csv ("Metadata.csv", na.strings = "na")
+head(Metadata)
+DiversityData= read.csv ("DiversityData.csv", na.strings = "na")
+str(DiversityData)
+```
+### 2. Join the two dataframes together by the common column.
+
+```{r}
+
+alpha <- left_join(Metadata, DiversityData, by = "Code")
+str(alpha)
+```
+
+### 3. Calculate Pielou’s evenness index
+```{r}
+alpha_even <- alpha %>%
+  mutate(pielou_evenness = shannon / log(richness))
+str(alpha_even)
+```
+
+### 4. Mean and standard error evenness grouped by crop over time
+```{r}
+alpha_even %>%
+  group_by(Crop, Time_Point) %>% 
+  summarise(mean_even = mean(pielou_evenness), 
+            n = n(), 
+            sd_dev = sd(pielou_evenness)) %>%
+  mutate(std_err = sd_dev/sqrt(n)) -> alpha_avarage
+ str(alpha_avarage)
+```
+### 5. Calculate the difference between the columns
+```{r}
+alpha_avarage %>%
+  select(Time_Point, Crop, mean_even) %>% #Time_Point, Crop, and mean.even #
+  pivot_wider(names_from = Crop, values_from = mean_even)%>% 
+  mutate(diff.Cotton.even = Soil - Cotton,diff.Soybean.even = Soil - Soybean)->alpha_average2
+  str(alpha_average2)         
+```
+### 6. Plotting
+```{r}
+alpha_average2 %>%
+  select(Time_Point, diff.Cotton.even, diff.Soybean.even) %>%
+  pivot_longer(
+    cols = c(diff.Cotton.even, diff.Soybean.even),
+    names_to = "diff",
+    values_to = "values"
+  ) %>%
+  ggplot(aes(x = Time_Point, y = values, color = diff)) +
+  geom_line()
+```
+
+
+
+ 
+  
+
+
+
+
+
+
+
+
+
