@@ -3,9 +3,8 @@ title: "Coding_challage_5"
 author: "Prasanna"
 date: "2026-03-05"
 output:
-  html_document:
-    toc: true
   md_document:
+    toc: true
     variant: gfm
 ---
 ### loading necessary package
@@ -66,17 +65,5 @@ alpha_average2 %>%
   ggplot(aes(x = Time_Point, y = values, color = diff)) +
   geom_line()
 ```
-
-
-
- 
-  
-
-
-
-
-
-
-
 
 
