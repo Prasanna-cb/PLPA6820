@@ -1,0 +1,113 @@
+---
+title: "Coding_challenge_6"
+author: "Prasanna"
+date: "2026-03-05"
+output:
+  md_document:
+    variant: gfm
+    toc: true
+---
+[GitHub link](https://github.com/Prasanna-cb/PLPA6820/tree/main/Coding_chalange_6)
+
+### 1. Regarding reproducibility, what is the main point of writing your own functions and iterations
+
+### It improves reproducibility because it ensures that the same analysis steps are applied consistently across different datasets. It avoids manual repetition and reduces the risk of human errors such as incorrect copying or editing. In addition, it makes the code more organized, easier to understand, and easier for others to reproduce the results.
+
+### 2. Conceptual: In your own words, describe: 1) how to write a function in R, and 2) how to write a for loop in R. In your answer, be specific about: basic syntax, where the code is written, and how results are returned or stored. 
+
+### A function in R is written using the function () keyword. First, give the function a name, then put the input variables inside the parentheses. The actual code is written inside curly brackets {}. Inside the function, perform the calculation and use return() to give back the result.
+
+### A for loop in R is used to repeat a piece of code multiple times. The basic syntax is for (i in sequence) { }, where i takes values from a sequence like 1:10. The code inside the curly brackets is executed for each value of i.
+
+
+### loading necessary package
+```{r message=FALSE, warning=FALSE}
+library(ggplot2)
+ library(drc) 
+ library(tidyverse)
+```
+### 3. import two data files
+
+```{r}
+citydata=read.csv ("Cities.csv", na.strings = "na")
+head(citydata)
+str(citydata)
+```
+### 4.Function writing
+
+```{r}
+distance <- function(lat1, lon1, lat2, lon2){
+  #convert to radians
+  rad.lat1 <- lat1 * pi/180
+  rad.lon1 <- lon1 * pi/180
+  rad.lat2 <- lat2 * pi/180
+  rad.lon2 <- lon2 * pi/180
+  
+  #Haversine formula
+  delta_lat <- rad.lat2 - rad.lat1
+  delta_lon <- rad.lon2 - rad.lon1
+  a <- sin(delta_lat / 2)^2 + cos(rad.lat1) * cos(rad.lat2) * sin(delta_lon / 2)^2
+  c <- 2 * asin(sqrt(a))
+  
+  #Earth's radius in km
+  earth_radius <- 6378137
+  
+  #Calculate the distance
+  distance_km <- (earth_radius * c)/1000
+  return(distance_km)
+}
+```
+
+
+### 5.Calculate the distance between Auburn and New York
+
+```{r}
+Au_NY <- function(start, destination)
+{
+  cord_extract <- citydata %>% 
+  select(city, lat, long) %>%
+  filter(city == start | city == destination) %>%
+  group_by(city)
+head(cord_extract)
+cords <- list(cord_extract$lat, cord_extract$long)
+latitude_1 <- cords[[1]][1]
+latitude_2 <- cords[[1]][2]
+longitude_1 <- cords[[2]][1]
+longitude_2 <- cords[[2]][2]
+return(distance(latitude_1, longitude_1, latitude_2, longitude_2))
+}
+
+Au_NY ("New York", "Auburn")
+```
+
+### 6. Use your distance function inside a for loop to calculate the distance between Auburn, AL and every other city in Cities.csv.
+
+```{r}
+Au_to_cities <- unique(citydata$city)
+for (i in seq_along(Au_to_cities)) {
+  results <- Au_NY(Au_to_cities[[i]], "Auburn" )
+  print(results)
+}
+```
+### Modify your loop so that each iteration appends one new row to a dataframe with the following columns
+- City1 (the other city)
+- City2 (Auburn)
+- Distance_km
+
+```{r}
+all_distances <- NULL
+Au_to_cities <- unique(citydata$city)
+for (i in seq_along(Au_to_cities)) {
+  results <- Au_NY(Au_to_cities[[i]], "Auburn" )
+  distance_i <- data.frame(Au_to_cities[[i]], "Auburn", results)
+  colnames(distance_i) <- c("Destination", "Origin", "Distance (Km)")
+  all_distances <- rbind.data.frame(all_distances, distance_i)
+}
+
+head(all_distances)
+```
+
+
+
+
+

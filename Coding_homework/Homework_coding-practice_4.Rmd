@@ -1,0 +1,62 @@
+---
+title: "Coding Practice 4"
+date: "2026-02-18"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+  md_document:
+    variant: gfm
+  pdf_document: 
+  word_document: 
+---
+
+```{r code exaples}
+#This is sR codes
+summary(mtcars)
+```
+
+```{r}
+library(ggplot2)
+data("mtcars")
+ggplot(mtcars, aes(x=wt, y=mpg))+
+  geom_point()
+```
+
+R markdown formatting options
+
+# First level header
+*example how to ITALICS* 
+
+## Second level header
+**example how to BOLD**
+
+### Third evel header
+example text
+
+#### define levels and numbers ####
+- one item
+- another item
+  - one sub item
+
+1. one item
+2. another item
+3. one sub item
+
+#### Links
+
+[link to my GitHub](https://github.com/Prasanna-cb/PLPA6820/blob/main)
+
+#### Images
+![Micky mouse ggplot](Mickey_mouse.jpg)
+#### Formatted tables
+```{r}
+library(knitr)
+kable (mtcars, digits =3, format = "markdown")
+
+```
+
+
+
+
+
