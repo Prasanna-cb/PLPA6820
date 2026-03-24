@@ -1,43 +1,5 @@
-- [1. Regarding reproducibility, what is the main point of writing your
-  own functions and
-  iterations](#regarding-reproducibility-what-is-the-main-point-of-writing-your-own-functions-and-iterations)
-- [It improves reproducibility because it ensures that the same analysis
-  steps are applied consistently across different datasets. It avoids
-  manual repetition and reduces the risk of human errors such as
-  incorrect copying or editing. In addition, it makes the code more
-  organized, easier to understand, and easier for others to reproduce
-  the
-  results.](#it-improves-reproducibility-because-it-ensures-that-the-same-analysis-steps-are-applied-consistently-across-different-datasets.-it-avoids-manual-repetition-and-reduces-the-risk-of-human-errors-such-as-incorrect-copying-or-editing.-in-addition-it-makes-the-code-more-organized-easier-to-understand-and-easier-for-others-to-reproduce-the-results.)
-- [2. Conceptual: In your own words, describe: 1) how to write a
-  function in R, and 2) how to write a for loop in R. In your answer, be
-  specific about: basic syntax, where the code is written, and how
-  results are returned or
-  stored.](#conceptual-in-your-own-words-describe-1-how-to-write-a-function-in-r-and-2-how-to-write-a-for-loop-in-r.-in-your-answer-be-specific-about-basic-syntax-where-the-code-is-written-and-how-results-are-returned-or-stored.)
-- [A function in R is written using the function () keyword. First, give
-  the function a name, then put the input variables inside the
-  parentheses. The actual code is written inside curly brackets {}.
-  Inside the function, perform the calculation and use return() to give
-  back the
-  result.](#a-function-in-r-is-written-using-the-function-keyword.-first-give-the-function-a-name-then-put-the-input-variables-inside-the-parentheses.-the-actual-code-is-written-inside-curly-brackets-.-inside-the-function-perform-the-calculation-and-use-return-to-give-back-the-result.)
-- [A for loop in R is used to repeat a piece of code multiple times. The
-  basic syntax is for (i in sequence) { }, where i takes values from a
-  sequence like 1:10. The code inside the curly brackets is executed for
-  each value of
-  i.](#a-for-loop-in-r-is-used-to-repeat-a-piece-of-code-multiple-times.-the-basic-syntax-is-for-i-in-sequence-where-i-takes-values-from-a-sequence-like-110.-the-code-inside-the-curly-brackets-is-executed-for-each-value-of-i.)
-- [loading necessary package](#loading-necessary-package)
-- [3. import two data files](#import-two-data-files)
-- [4.Function writing](#function-writing)
-- [5.Calculate the distance between Auburn and New
-  York](#calculate-the-distance-between-auburn-and-new-york)
-- [6. Use your distance function inside a for loop to calculate the
-  distance between Auburn, AL and every other city in
-  Cities.csv.](#use-your-distance-function-inside-a-for-loop-to-calculate-the-distance-between-auburn-al-and-every-other-city-in-cities.csv.)
-- [Modify your loop so that each iteration appends one new row to a
-  dataframe with the following
-  columns](#modify-your-loop-so-that-each-iteration-appends-one-new-row-to-a-dataframe-with-the-following-columns)
-
 [GitHub
-link](https://github.com/Prasanna-cb/PLPA6820/tree/main/Coding_chalange_6)
+link](https://github.com/Prasanna-cb/PLPA6820/tree/main/Coding%20challage%20_6)
 
 ### 1. Regarding reproducibility, what is the main point of writing your own functions and iterations
 
