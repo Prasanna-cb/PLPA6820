@@ -3,11 +3,11 @@ title: "Coding_challenge_6"
 author: "Prasanna"
 date: "2026-03-05"
 output:
-  md_document:
+  html_document:
     variant: gfm
-    toc: true
+    
 ---
-[GitHub link](https://github.com/Prasanna-cb/PLPA6820/tree/main/Coding_chalange_6)
+[GitHub link](https://github.com/Prasanna-cb/PLPA6820/tree/main/Coding%20challage%20_6)
 
 ### 1. Regarding reproducibility, what is the main point of writing your own functions and iterations
 
