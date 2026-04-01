@@ -5,6 +5,7 @@ output:
   html_document:
     variant: gfm
 ---
+[GitHub link](https://github.com/Prasanna-cb/PLPA6820/tree/main/Coding_challage_7)
 
 ### Load necassary packages
 ```{r message=FALSE, warning=FALSE}
