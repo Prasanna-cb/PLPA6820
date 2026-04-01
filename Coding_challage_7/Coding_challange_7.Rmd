@@ -1,0 +1,129 @@
+---
+title: "Coding_challage_7"
+author: "Prasanna"
+output:
+  html_document:
+    variant: gfm
+---
+
+### Load necassary packages
+```{r message=FALSE, warning=FALSE}
+library(ggplot2)
+library(lme4) 
+library(tidyverse)
+library(multcomp)
+library(multcompView)
+library(emmeans)
+```
+
+### 1. Read in the data called “PlantEmergence.csv” using a relative file path and load the following libraries. tidyverse, lme4, emmeans, multcomp, and multcompView. Turn the Treatment , DaysAfterPlanting  and Rep into factors using the function as.factor
+
+### 1.1 Load data files
+
+```{r}
+lmdata=read.csv ("PlantEmergence.csv", na.strings = "na")
+head(lmdata)
+str(lmdata)
+```
+
+### 1.2 Assigning the factors variables
+```{r}
+lmdata$Treatment <- as.factor(lmdata$Treatment)
+lmdata$DaysAfterPlanting <- as.factor(lmdata$DaysAfterPlanting)
+lmdata$Rep <- as.factor(lmdata$Rep)
+```
+
+### 2. Fit a linear model to predict Emergence using Treatment and DaysAfterPlanting along with the interaction. Provide the summary of the linear model and ANOVA results.
+
+```{r}
+lm1 <- lm(Emergence ~ Treatment*DaysAfterPlanting, data= lmdata)
+summary(lm1)
+anova(lm1)
+```
+
+### Results explanantion of the liner model.
+
+- The linear model showed that treatment significantly affected emergence (p < 2.2e-16), while days after planting and the interaction between treatment and time were not significant.The effect of treatment on emergence does not depend on time and remains consistent across all days after planting. This model explains 95.8 % of the variation in emergence.
+
+### Results explanantion of the ANOVA
+
+- Emergence is affected by both treatment (p < 2.2e-16) and time (p=1.877e-05), but the effect of treatment does not change over time (interaction).Therefore testing interaction is removed from the model and non interactive model is used. 
+
+### 3. Based on the results of the linear model in question 2, do you need to fit the interaction term? Provide a simplified linear model without the interaction term but still testing both main effects. Provide the summary and ANOVA results. Then, interpret the intercept and the coefficient for Treatment 2.
+
+```{r}
+lm2 <- lm(Emergence ~ Treatment+ DaysAfterPlanting, data= lmdata)
+summary(lm2)
+anova(lm2)
+```
+
+### Results interpretation
+
+- Based on the results of the model in question 2, the interaction term is not needed since it is not significant.
+- Both Treatment and DaysAfterPlanting has significant effects on emergence (p <  0.001), indicating that emergence varies across treatments and over time.
+- The intercept (182.16) represents the expected emergence for Treatment 1 at the baseline level of DaysAfterPlanting.
+- The coefficient for Treatment 2 (-134.53) indicates that emergence in Treatment 2 is 134.53 units lower than in Treatment 1, holding DaysAfterPlanting constant.
+
+
+### 4. Calculate the least square means for Treatment using the emmeans package and perform a Tukey separation with the compact letter display using the cld function. Interpret the results.
+
+```{r}
+lsmeans <- emmeans(lm1, ~ Treatment) 
+Results_lsmeans <- cld(lsmeans, alpha = 0.05, reversed = TRUE, details = TRUE)  
+Results_lsmeans
+
+```
+
+### Interpretation of the lsmeans results.
+
+- Treatment 2 had the lowest emergence and was significantly lower than all other treatments. Treatments 5 and 3 had the highest emergence that were not statically significant from treatments 1, 7, 9, 4, 6, and 8. 
+
+
+### 5.The provided function lets you dynamically add a linear model plus one factor from that model and plots a bar chart with letters denoting treatment differences. Use this model to generate the plot shown below. Explain the significance of the letters
+
+```{r}
+plot_cldbars <- function(lm_model, factor) {
+  data <- lm_model$model
+  variables <- colnames(lm_model$model)
+  dependent_var <- variables[1]
+  independent_var <- variables[2:length(variables)]
+
+  lsmeans <- emmeans(lm_model, as.formula(paste("~", factor))) # estimate lsmeans 
+  Results_lsmeans <- cld(lsmeans, alpha = 0.05, reversed = TRUE, details = TRUE, Letters = letters) # contrast with Tukey adjustment by default.
+  
+  # Extracting the letters for the bars
+  sig.diff.letters <- data.frame(Results_lsmeans$emmeans[,1], 
+                                 str_trim(Results_lsmeans$emmeans[,7]))
+  colnames(sig.diff.letters) <- c(factor, "Letters")
+  
+  # for plotting with letters from significance test
+  ave_stand2 <- lm_model$model %>%
+    group_by(!!sym(factor)) %>%
+    dplyr::summarize(
+      ave.emerge = mean(.data[[dependent_var]], na.rm = TRUE),
+      se = sd(.data[[dependent_var]]) / sqrt(n())
+    ) %>%
+    left_join(sig.diff.letters, by = factor) %>%
+    mutate(letter_position = ave.emerge + 10 * se)
+  
+  plot <- ggplot(data, aes(x = !! sym(factor), y = !! sym(dependent_var))) + 
+    stat_summary(fun = mean, geom = "bar") +
+    stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.5) +
+    ylab("Number of emerged plants") + 
+    geom_jitter(width = 0.02, alpha = 0.5) +
+    geom_text(data = ave_stand2, aes(label = Letters, y = letter_position), size = 5) +
+    xlab(as.character(factor)) +
+    theme_classic()
+  
+  return(plot)
+}
+
+plot_cldbars(lm1, "Treatment")
+```
+
+### Explain the significance of the letters.
+
+- Plant emergence is significantly affected by the treatment. The number of plant emergence is significantly lower on day two than on all other days. However, in the pairwise comparisons, day 7 also shows significantly lower plant emergence compared to days 3, 5, and 6. 
+
+
+
