@@ -2,7 +2,7 @@
 title: "Coding_challage_7"
 author: "Prasanna"
 output:
-  html_document:
+  md_document:
     variant: gfm
 ---
 [GitHub link](https://github.com/Prasanna-cb/PLPA6820/tree/main/Coding_challage_7)
